@@ -1,8 +1,8 @@
 defmodule Ladder.ManagerLadder do
   def start_link do
     children = [
-      {Ladder.BinanceLadder, []},
-      {Ladder.BitfinexLadder, []}
+      {Ladder.BinanceLadder, []}
+#      {Ladder.BitfinexLadder, []}
     ]
     Supervisor.start_link(children, strategy: :one_for_one)
   end

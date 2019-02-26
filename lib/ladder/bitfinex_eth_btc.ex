@@ -6,7 +6,7 @@ defmodule Ladder.BitfinexEthBtc do
   @exchanage "bitfinex"
   @symbol "tETHBTC"
   @url "wss://api-pub.bitfinex.com/ws/2"
-  @msg %{ "event": "subscribe", "channel": "book", "symbol": @symbol }
+  @msg %{ "event": "subscribe", "channel": "book", "symbol": @symbol , "freq": "F1"}
   @database "ladders"
 
   def start_link(_) do
@@ -17,9 +17,10 @@ defmodule Ladder.BitfinexEthBtc do
   end
 
   def handle_frame({type, msg}, state) do
-#    IO.puts "Received Message - Type: #{inspect type} -- Message: #{inspect msg}"
+    IO.puts "Received Message - Type: #{inspect type} -- Message: #{inspect msg}"
     msg
     |> Poison.decode!
+#    |> IO.inspect
     |> handle_decode_msg
 
     {:ok, state}
@@ -32,6 +33,7 @@ defmodule Ladder.BitfinexEthBtc do
   defp handle_decode_msg(decoded_msg) do
     decoded_msg
     |> get_value
+#    |> IO.inspect
     |> write_data
   end
 
@@ -64,5 +66,10 @@ defmodule Ladder.BitfinexEthBtc do
 
   defp get_value([_channel_ID, [price, _count, _amount]]) do
     price
+  end
+
+  # Riki temporally proccess error data here!!!!
+  defp get_value(_) do
+    -1.0
   end
 end
