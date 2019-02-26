@@ -28,3 +28,14 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env()}.exs"
+
+config :cryto_ladder_demo, Ladder.Database.Manager,
+       database:  "ladders",
+       host: "localhost",
+#       http_opts: [insecure: true, proxy: "http://company.proxy"],
+       pool: [max_overflow: 10, size: 50],
+       port: 8086
+#       scheme: "http",
+#       writer: Instream.Writer.Line,
+#       json_decoder: Poison,
+#       auth: [method: :basic, username: "riki", password: "riki"]
