@@ -11,7 +11,7 @@ defmodule Ladder.BitfinexEthBtc do
 
   def start_link(_) do
     IO.puts("riki debug here : Ladder.BitfinexEthBtc.start_link")
-    {:ok, pid} = WebSockex.start_link(@url, __MODULE__, %{})
+    {:ok, pid} = WebSockex.start_link(@url, __MODULE__, %{}, name: __MODULE__)
     subscribe(pid)
     {:ok, pid}
   end

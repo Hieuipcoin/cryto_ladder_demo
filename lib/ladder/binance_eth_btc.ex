@@ -20,7 +20,7 @@ defmodule Ladder.BinanceEthBtc do
 
   def start_link(_) do
     IO.puts("riki debug here : Ladder.BinanceEthBtc.start_link")
-    WebSockex.start_link(@url, __MODULE__, %{})
+    WebSockex.start_link(@url, __MODULE__, %{}, name: __MODULE__)
   end
 
   def handle_frame({:text, msg}, state) do

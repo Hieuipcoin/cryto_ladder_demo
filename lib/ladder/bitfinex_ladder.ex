@@ -3,7 +3,7 @@ defmodule Ladder.BitfinexLadder do
     children = [
       {Ladder.BitfinexEthBtc, []}
     ]
-    Supervisor.start_link(children, strategy: :one_for_one)
+    Supervisor.start_link(children, strategy: :one_for_one, name: __MODULE__)
   end
 
   def child_spec(_) do
