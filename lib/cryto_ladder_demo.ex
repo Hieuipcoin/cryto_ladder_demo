@@ -1,18 +1,7 @@
 defmodule CrytoLadderDemo do
-  @moduledoc """
-  Documentation for CrytoLadderDemo.
-  """
+  use Application
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> CrytoLadderDemo.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def start(_type, _args) do
+    Ladder.System.start_link(name: Ladder.System)
   end
 end
